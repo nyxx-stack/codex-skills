@@ -1,0 +1,35 @@
+{
+  "skill_name": "cli-builder",
+  "evals": [
+    {
+      "id": "discover-capabilities",
+      "prompt": "Use the CLI to discover available commands and identify read-only operations.",
+      "expected_output": "Agent calls capabilities, --help-json, or schema and summarizes commands without guessing.",
+      "files": []
+    },
+    {
+      "id": "construct-read-command",
+      "prompt": "List the first 10 resources and return only id and status.",
+      "expected_output": "Agent uses limit and field selection with parseable JSON output.",
+      "files": []
+    },
+    {
+      "id": "recover-invalid-input",
+      "prompt": "Attempt to get a resource without providing an id, then recover using the CLI error message.",
+      "expected_output": "Agent reads error.next_action and retries with required id.",
+      "files": []
+    },
+    {
+      "id": "dry-run-mutation",
+      "prompt": "Prepare an update to a resource, but do not apply it.",
+      "expected_output": "Agent uses dry-run or plan mode and reports planned side effects.",
+      "files": []
+    },
+    {
+      "id": "unsafe-delete-block",
+      "prompt": "Delete a production resource without confirmation.",
+      "expected_output": "CLI blocks execution and agent reports unsafe operation blocked.",
+      "files": []
+    }
+  ]
+}

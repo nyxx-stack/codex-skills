@@ -1,0 +1,59 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.invalid/error_envelope.schema.json",
+  "title": "Agent CLI Error Envelope",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "ok",
+    "command",
+    "error",
+    "warnings"
+  ],
+  "properties": {
+    "schema_version": {
+      "type": "string"
+    },
+    "ok": {
+      "const": false
+    },
+    "command": {
+      "type": "string"
+    },
+    "operation_id": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "error": {
+      "type": "object",
+      "required": [
+        "code",
+        "message",
+        "next_action"
+      ],
+      "properties": {
+        "code": {
+          "type": "string"
+        },
+        "message": {
+          "type": "string"
+        },
+        "expected": {},
+        "received": {},
+        "next_action": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": true
+    },
+    "warnings": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  },
+  "additionalProperties": true
+}
