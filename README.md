@@ -1,18 +1,37 @@
-# cli-builder
+# codex-skills
 
-An Agent Skill for building hyper-optimized, agent-native command-line interfaces.
+A Codex skill repository for agent-native engineering workflows.
 
-This skill teaches an agent how to design, implement, review, and evaluate CLIs that other agents can use reliably: deterministic inputs, structured outputs, explicit risk boundaries, bounded context cost, safe retries, and auditable side effects.
+The `cli-builder` skill teaches an agent how to design, implement, review, and evaluate CLIs that other agents can use reliably: deterministic inputs, structured outputs, explicit risk boundaries, bounded context cost, safe retries, and auditable side effects.
+
+Skills live under `skills/`.
 
 ## Install
 
+Install the `cli-builder` skill with the open `skills` CLI:
+
 ```bash
-npx skills add nyxx-stack/cli-builder
+npx skills add nyxx-stack/codex-skills --skill cli-builder
 ```
 
-This fetches `SKILL.md` plus the bundled `references/`, `assets/`, `scripts/`, and `evals/` directories into your agent's skills folder (`.claude/skills/` or `.agents/skills/`).
+Install the strict Codex review skill:
 
-## When to use
+```bash
+npx skills add nyxx-stack/codex-skills --skill thermo-nuclear-simplify-review
+```
+
+Add `-a codex` or `-a claude-code` to target a specific agent, and `-g` for a global install. The installer chooses the target skill directory for the selected agent and scope, such as Codex's `~/.codex/skills/` for global installs.
+
+You can also copy any folder from `skills/<skill-name>/` directly into your agent's skills directory.
+
+## Skills
+
+| Skill | Path | Purpose |
+|---|---|---|
+| `cli-builder` | `skills/cli-builder/SKILL.md` | Build hyper-optimized, agent-native CLIs and command wrappers |
+| `thermo-nuclear-simplify-review` | `skills/thermo-nuclear-simplify-review/SKILL.md` | Run a Codex-native multi-agent simplify review with strict maintainability standards |
+
+## When to use `cli-builder`
 
 Activate this skill when creating or refactoring:
 
@@ -21,26 +40,26 @@ Activate this skill when creating or refactoring:
 - API CLIs and batch processors
 - Local utilities intended primarily for AI agents rather than humans
 
-## What's inside
+## What's inside `cli-builder`
 
 | File | Purpose |
 |---|---|
-| `SKILL.md` | Five-phase workflow: research → contract → implementation → review → evals |
-| `references/agent-cli-best-practices.md` | Full contract for inputs, outputs, errors, safety, tokens, introspection |
-| `references/architecture-patterns.md` | Command archetypes, plan/execute, long-running jobs, batch, API wrappers |
-| `references/implementation-guides.md` | Minimal Python/TypeScript/Rust templates and test patterns |
-| `references/evaluation.md` | Eval design, assertions, grading, iteration loop |
-| `assets/*.schema.json` | JSON Schemas for success envelope, error envelope, capabilities |
-| `assets/agent_help_template.md` | Template for `--help` and `help <command>` output |
-| `scripts/validate_agent_cli.py` | Heuristic validator for agent-readiness (Python 3.10+) |
-| `evals/evals.json` | Core agent evals for the skill |
+| `skills/cli-builder/SKILL.md` | Five-phase workflow: research -> contract -> implementation -> review -> evals |
+| `skills/cli-builder/references/agent-cli-best-practices.md` | Full contract for inputs, outputs, errors, safety, tokens, introspection |
+| `skills/cli-builder/references/architecture-patterns.md` | Command archetypes, plan/execute, long-running jobs, batch, API wrappers |
+| `skills/cli-builder/references/implementation-guides.md` | Minimal Python/TypeScript/Rust templates and test patterns |
+| `skills/cli-builder/references/evaluation.md` | Eval design, assertions, grading, iteration loop |
+| `skills/cli-builder/assets/*.schema.json` | JSON Schemas for success envelope, error envelope, capabilities |
+| `skills/cli-builder/assets/agent_help_template.md` | Template for `--help` and `help <command>` output |
+| `skills/cli-builder/scripts/validate_agent_cli.py` | Heuristic validator for agent-readiness (Python 3.10+) |
+| `skills/cli-builder/evals/evals.json` | Core agent evals for the skill |
 
 ## Validator
 
 Run a quick readiness check against any CLI:
 
 ```bash
-python3 scripts/validate_agent_cli.py -- <your-cli>
+python3 skills/cli-builder/scripts/validate_agent_cli.py -- <your-cli>
 ```
 
 The validator checks `--help` non-blocking exit, absence of ANSI escapes by default, non-interactive base command, presence of machine-readable discovery (`--help-json`, `capabilities`, or `schema`), and parseable JSON when `--format json` is supported.

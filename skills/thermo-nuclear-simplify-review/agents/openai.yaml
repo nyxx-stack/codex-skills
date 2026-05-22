@@ -1,0 +1,7 @@
+interface:
+  display_name: "Thermo-Nuclear Simplify Review"
+  short_description: "Strict multi-agent code simplification review"
+  default_prompt: "Use $thermo-nuclear-simplify-review to review the current diff and fix high-confidence simplification issues."
+
+policy:
+  allow_implicit_invocation: true
