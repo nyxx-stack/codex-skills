@@ -1,6 +1,6 @@
 ---
 name: thermo-nuclear-simplify-review
-description: Run a Codex-native simplify review for explicit cleanup, maintainability, hardening, thermonuclear review, or code-quality audit requests.
+description: Run a Codex-native simplify pass for explicit cleanup, maintainability, hardening, thermonuclear review, or code-quality audit requests. Reviews with subagents, then fixes high-confidence issues unless review-only is requested.
 ---
 
 # Thermo-Nuclear Simplify Review
@@ -8,6 +8,8 @@ description: Run a Codex-native simplify review for explicit cleanup, maintainab
 Use this skill after implementation, before a commit or PR, or when the user asks to simplify, harden, clean up, or run a thermo-nuclear code-quality review.
 
 The goal is not cosmetic cleanup. The goal is to find the smallest behavior-preserving structure that makes the change feel inevitable: fewer concepts, fewer branches, clearer ownership, stronger boundaries, and less incidental machinery.
+
+Default behavior is action-oriented: identify issues, fix high-confidence behavior-preserving simplifications, then verify. Only stop at findings when the user explicitly asks for review-only, audit-only, no edits, or "tell me what you find."
 
 ## Codex Workflow
 
@@ -29,11 +31,13 @@ Wait for all three agents to complete. Merge overlapping observations, discard l
 
 Prefer a few high-conviction findings over a long list.
 
-### Phase 4: Review or Fix
+### Phase 4: Fix by Default
 
-If the user asked for review only, report findings first with file/line references and do not edit.
+If the user explicitly asked for review-only, report findings first with file/line references and do not edit.
 
-If the user asked to fix, apply behavior-preserving simplifications after synthesis, then verify. If a finding is a false positive or not worth addressing, note it and move on. Do not rewrite broad areas speculatively when the risk outweighs the simplification.
+Otherwise, apply behavior-preserving simplifications after synthesis. Work through the high-confidence findings directly instead of merely reporting them. If a finding is a false positive, too risky, or not worth addressing, note it and move on.
+
+Do not rewrite broad areas speculatively when the risk outweighs the simplification. Do not ask permission between fixes unless the next step would be destructive, irreversible, or outside the requested scope.
 
 ### Phase 5: Verify
 
@@ -140,14 +144,17 @@ Severity guidance:
 
 If there are no findings, say that clearly and include any verification gaps.
 
+For default fix output, summarize what was fixed, what was intentionally skipped, and what verification ran. Do not dump every intermediate subagent finding unless it explains a skipped issue or remaining risk.
+
 ## Fix Mode
 
-When fixing:
+When fixing by default:
 
 - Keep edits scoped to high-confidence findings.
 - Preserve public APIs and behavior unless the user explicitly asks to change them.
 - Use existing local patterns before introducing new abstractions.
 - Prefer extracting pure helpers, moving logic to the owning layer, deleting wrappers, collapsing duplicate branches, and making invariants explicit.
+- Iterate until the high-confidence fixable findings have been addressed or consciously rejected.
 - Run verification after edits and report remaining risk.
 
 Do not let the review become a broad rewrite. The right fix is the one that removes real complexity while keeping behavior obvious.
