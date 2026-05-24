@@ -20,6 +20,12 @@ Install the strict Codex review skill:
 npx skills add nyxx-stack/codex-skills --skill thermo-nuclear-simplify-review
 ```
 
+Install the GPT bridge skill:
+
+```bash
+npx skills add nyxx-stack/codex-skills --skill gpt-pro-bridge
+```
+
 Add `-a codex` or `-a claude-code` to target a specific agent, and `-g` for a global install. The installer chooses the target skill directory for the selected agent and scope, such as Codex's `~/.codex/skills/` for global installs.
 
 You can also copy any folder from `skills/<skill-name>/` directly into your agent's skills directory.
@@ -30,6 +36,7 @@ You can also copy any folder from `skills/<skill-name>/` directly into your agen
 |---|---|---|
 | `cli-builder` | `skills/cli-builder/SKILL.md` | Build hyper-optimized, agent-native CLIs and command wrappers |
 | `thermo-nuclear-simplify-review` | `skills/thermo-nuclear-simplify-review/SKILL.md` | Run a Codex-native multi-agent simplify review with strict maintainability standards |
+| `gpt-pro-bridge` | `skills/gpt-pro-bridge/SKILL.md` | Package any git repo and generate a structured GPT 5.4 Pro prompt for external codebase analysis |
 
 ## When to use `cli-builder`
 
