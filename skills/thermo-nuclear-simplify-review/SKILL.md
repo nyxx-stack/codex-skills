@@ -1,6 +1,6 @@
 ---
 name: thermo-nuclear-simplify-review
-description: Run a Codex-native simplify pass for explicit cleanup, maintainability, hardening, thermonuclear review, or code-quality audit requests. Reviews with subagents, then fixes high-confidence issues unless review-only is requested.
+description: Run an agent-native simplify pass for explicit cleanup, maintainability, hardening, thermonuclear review, or code-quality audit requests. Reviews with subagents, then fixes high-confidence issues unless review-only is requested.
 ---
 
 # Thermo-Nuclear Simplify Review
@@ -11,7 +11,7 @@ The goal is not cosmetic cleanup. The goal is to find the smallest behavior-pres
 
 Default behavior is action-oriented: identify issues, fix high-confidence behavior-preserving simplifications, then verify. Only stop at findings when the user explicitly asks for review-only, audit-only, no edits, or "tell me what you find."
 
-## Codex Workflow
+## Workflow
 
 ### Phase 1: Identify Changes
 

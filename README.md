@@ -1,6 +1,6 @@
-# codex-skills
+# agent-skills
 
-A Codex skill repository for agent-native engineering workflows.
+An agent-agnostic skill repository for agent-native engineering workflows. Skills work with any agent that supports the SKILL.md format (Claude Code, Codex, and others).
 
 The `cli-builder` skill teaches an agent how to design, implement, review, and evaluate CLIs that other agents can use reliably: deterministic inputs, structured outputs, explicit risk boundaries, bounded context cost, safe retries, and auditable side effects.
 
@@ -8,25 +8,31 @@ Skills live under `skills/`.
 
 ## Install
 
-Install the `cli-builder` skill with the open `skills` CLI:
+Install any skill with the open `skills` CLI:
 
 ```bash
-npx skills add nyxx-stack/codex-skills --skill cli-builder
+npx skills add nyxx-stack/agent-skills --skill cli-builder
 ```
 
-Install the strict Codex review skill:
+Install the strict multi-agent review skill:
 
 ```bash
-npx skills add nyxx-stack/codex-skills --skill thermo-nuclear-simplify-review
+npx skills add nyxx-stack/agent-skills --skill thermo-nuclear-simplify-review
 ```
 
 Install the GPT bridge skill:
 
 ```bash
-npx skills add nyxx-stack/codex-skills --skill gpt-pro-bridge
+npx skills add nyxx-stack/agent-skills --skill gpt-pro-bridge
 ```
 
-Add `-a codex` or `-a claude-code` to target a specific agent, and `-g` for a global install. The installer chooses the target skill directory for the selected agent and scope, such as Codex's `~/.codex/skills/` for global installs.
+Install the frontend UI animation skill:
+
+```bash
+npx skills add nyxx-stack/agent-skills --skill frontend-ui-animator
+```
+
+Add `-a codex` or `-a claude-code` to target a specific agent, and `-g` for a global install. The installer chooses the target skill directory for the selected agent and scope, such as Codex's `~/.codex/skills/` or Claude Code's `~/.claude/skills/` for global installs.
 
 You can also copy any folder from `skills/<skill-name>/` directly into your agent's skills directory.
 
@@ -35,8 +41,9 @@ You can also copy any folder from `skills/<skill-name>/` directly into your agen
 | Skill | Path | Purpose |
 |---|---|---|
 | `cli-builder` | `skills/cli-builder/SKILL.md` | Build hyper-optimized, agent-native CLIs and command wrappers |
-| `thermo-nuclear-simplify-review` | `skills/thermo-nuclear-simplify-review/SKILL.md` | Run a Codex-native multi-agent simplify review with strict maintainability standards |
+| `thermo-nuclear-simplify-review` | `skills/thermo-nuclear-simplify-review/SKILL.md` | Run a multi-agent simplify review with strict maintainability standards |
 | `gpt-pro-bridge` | `skills/gpt-pro-bridge/SKILL.md` | Package any git repo and generate a structured GPT 5.4 Pro prompt for external codebase analysis |
+| `frontend-ui-animator` | `skills/frontend-ui-animator/SKILL.md` | Implement purposeful, performant frontend animations that enhance UX |
 
 ## When to use `cli-builder`
 
